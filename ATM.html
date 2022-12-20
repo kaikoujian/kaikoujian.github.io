@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简易ATM机 by 开口剑要学JS</title>
+</head>
+<body>
+    <h1>本网站制作人：开口剑要学JS</h1>
+    <script>
+        /*代码作者：开口剑要学JS*/
+        var shurukuang2;
+        var Administrator = 'kaikoujian';
+        var temp2;
+        var money = [1437, 1437, 1437];
+        var shurukuang;
+        var user = ['administrator1', 'administrator2'];
+        var temp = 0;
+        var tempAdmin = 0;
+        /*以上为初期准备*/
+        while (temp != 4) {
+            temp = prompt('您好!欢迎进入ATM机!请问您要: \n 1.存款； \n 2.取款； \n 3.查看余额； \n 4.退出； \n 5.管理者模式。 \n 输入1437或8848查看更多内容。 \n(注意：如果输入文字或者不输入，会出现NaN。若出现，请至管理员模式修改。)');
+            switch (parseInt(temp)) { //此时用switch实现分支功能，比if分支简便
+                case 1:
+                    shurukuang = prompt('请输入用户名：');
+                    if (shurukuang == user[0]) {
+                        temp2 = prompt('您好!' + user[0] + '。您要存多少钱呢？');
+                        parseFloat(money[0]);
+                        money[0] += parseFloat(temp2);
+                        alert('您现在的钱数是' + money[0] + '元。');
+                        temp2 = 0;
+                    } else if (shurukuang == user[1]) {
+                        temp2 = prompt('您好!' + user[1] + '。您要存多少钱呢？');
+                        parseFloat(money[1]);
+                        money[1] += parseFloat(temp2);
+                        alert('您现在的钱数是' + money[1] + '元。');
+                        temp2 = 0;
+                    } else {
+                        alert('请输入准确的用户名！');
+                    }
+                    shurukuang = 0;
+                    break;
+                    /*以上是输入框为1时的代码*/
+                case 2:
+                    shurukuang = prompt('请输入用户名：');
+                    if (shurukuang == user[0]) {
+                        temp2 = prompt('您好！' + user[0] + '。您要取多少钱呢？');
+                        parseFloat(money[0]);
+                        if (money[0] < temp2) {
+                            alert('您没有这么多钱！');
+                        } else {
+                            money[0] = money[0] - parseFloat(temp2);
+                            alert('您现在的钱数是' + money[0] + '元。');
+                        }
+                        temp2 = 0;
+                    } else if (shurukuang == user[1]) {
+                        temp2 = prompt('您好!' + user[1] + '。您要取多少钱呢？');
+                        parseFloat(money[1]);
+                        if (money[1] < temp2) {
+                            alert('您没有这么多钱！');
+                        } else {
+                            money[1] = money[1] - parseFloat(temp2);
+                            alert('您现在的钱数是' + money[1] + '元。');
+                        }
+                        temp2 = 0;
+                    } else {
+                        alert('请输入准确的用户名！');
+                    }
+                    shurukuang = 0;
+                    break;
+                    /*以上是输入框为2时的代码*/
+                case 3:
+                    shurukuang = prompt('请输入用户名：');
+                    if (shurukuang == user[0]) {
+                        alert('您好!' + user[0] + '。您的钱为' + money[0] + '元。');
+                    } else if (shurukuang == user[1]) {
+                        alert('您好!' + user[1] + '。您的钱为' + money[1] + '元。');
+                    } else {
+                        alert('请输入准确的用户名！')
+                    }
+                    shurukuang = 0;
+                    break;
+                    /*以上是输入框为3时的代码*/
+                case 4:
+                    alert('已退出！');
+                    break;
+                    /*以上为是输入框为4时的代码*/
+                case 5:
+                    shurukuang = prompt('请输入管理员密码：');
+                    if (shurukuang == Administrator) {
+                        while (tempAdmin != 3) {
+                            tempAdmin = prompt('您好!管理员开口剑。请问您要： \n 1.修改用户名； \n 2.修改用户金额；\n 3.退出。');
+                            switch (parseInt(tempAdmin)) {
+                                case 1:
+                                    switch (prompt('请输入原用户名：')) { //此处如果用if ，else if，else会有点麻烦。
+                                        case user[0]:
+                                            shurukuang2 = prompt('请输入现用户名：');
+                                            if (shurukuang2 == user[1]) {
+                                                alert('修改失败！已经有其他人使用了。');
+                                            } else {
+                                                user[0] = shurukuang2;
+                                                alert('修改成功！您现在的用户名为' + user[0] + '。');
+                                            } //此处用if分支来实现判断是否重复。
+                                            break;
+                                        case user[1]:
+                                            shurukuang2 = prompt('请输入现用户名：');
+                                            if (shurukuang2 == user[0]) {
+                                                alert('修改失败！已经有其他人使用了。');
+                                            } else {
+                                                user[1] = shurukuang2;
+                                                alert('修改成功！您现在的用户名为' + user[1] + '。');
+                                            } //此处用if分支来实现判断是否重复。
+                                            shurukuang2 = 0;
+                                            break;
+                                        default:
+                                            alert('请输入正确的用户名！');
+                                    }
+                                    break;
+                                case 2:
+                                    shurukuang = prompt('请输入用户名：');
+                                    if (shurukuang == user[0]) {
+                                        temp2 = prompt('用户为' + user[0] + '。您要替换为多少元呢？');
+                                        parseFloat(money[0]);
+                                        money[0] = parseFloat(temp2);
+                                        alert(user[0] + '现在的钱数是' + money[0] + '元。');
+                                        temp2 = 0;
+                                    } else if (shurukuang == user[1]) {
+                                        temp2 = prompt('用户为' + user[1] + '。您要替换为多少元呢？');
+                                        parseFloat(money[1]);
+                                        money[1] = parseFloat(temp2);
+                                        alert(user[1] + '现在的钱数是' + money[1] + '元。');
+                                        temp2 = 0;
+                                    } else {
+                                        alert('请输入准确的用户名！');
+                                    }
+                                    shurukuang = 0;
+                                    break;
+                                case 3:
+                                    alert('已退出管理员模式！');
+                                    break;
+                                default:
+                                    alert('请输入正确的数字!');
+                            }
+                        }
+                        tempAdmin = 0;
+                    } else {
+                        alert('请输入正确的管理员密码！');
+                    }
+                    break;
+                    /*以上是输入框为5时的代码*/
+                case 1437:
+                    alert('更多：\n原用户名：administrator1，administrator2；\n管理员密码：kaikoujian；\n用户初始金额：1437');
+                    break;
+                    /*以上是输入框为1437时的代码*/
+                case 8848:
+                    alert('更多：\n制作人：开口剑要学JS：掌阅课外书；\n版权所有，请勿侵权。');
+                    break;
+                    /*以上是输入框为8848时的代码*/
+                default:
+                    alert('请输入正确的数字！');
+                    /*以上是输入框为其他数字时的代码*/
+            }
+        }
+        /*共143行代码(不包括注释以及HTML基本框架)*/
+        /*版权所有：开口剑要学JS*/
+    </script>
+</body>
+</html>
